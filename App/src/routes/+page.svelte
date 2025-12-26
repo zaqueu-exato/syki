@@ -5,10 +5,6 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 </script>
 
-<svelte:head>
-	<title>Estud</title>
-</svelte:head>
-
 <Sidebar.Provider>
 	<AppSidebar />
 	<Sidebar.Inset>
