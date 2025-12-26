@@ -1,26 +1,43 @@
 <script lang="ts">
-  import * as AlertDialog from "$lib/components/ui/alert-dialog/index.js";
-  import { buttonVariants } from "$lib/components/ui/button/index.js";
+	import AppSidebar from "$lib/components/app-sidebar.svelte";
+	import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
+	import { Separator } from "$lib/components/ui/separator/index.js";
+	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 </script>
 
-<h1>---</h1>
+<svelte:head>
+	<title>Estud</title>
+</svelte:head>
 
-<h1>Welcome to ESTUD!</h1>
-
-<AlertDialog.Root>
-  <AlertDialog.Trigger class={buttonVariants({ variant: "outline" })}>
-    Show Dialog Now
-  </AlertDialog.Trigger>
-  <AlertDialog.Content>
-    <AlertDialog.Header>
-      <AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
-      <AlertDialog.Description>
-        This action cannot be undone. This will permanently delete your account and remove your data from our servers. Ok?
-      </AlertDialog.Description>
-    </AlertDialog.Header>
-    <AlertDialog.Footer>
-      <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-      <AlertDialog.Action>Continue</AlertDialog.Action>
-    </AlertDialog.Footer>
-  </AlertDialog.Content>
-</AlertDialog.Root>
+<Sidebar.Provider>
+	<AppSidebar />
+	<Sidebar.Inset>
+		<header
+			class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
+		>
+			<div class="flex items-center gap-2 px-4">
+				<Sidebar.Trigger class="-ms-1" />
+				<Separator orientation="vertical" class="me-2 data-[orientation=vertical]:h-4" />
+				<Breadcrumb.Root>
+					<Breadcrumb.List>
+						<Breadcrumb.Item class="hidden md:block">
+							<Breadcrumb.Link href="##">Application</Breadcrumb.Link>
+						</Breadcrumb.Item>
+						<Breadcrumb.Separator class="hidden md:block" />
+						<Breadcrumb.Item>
+							<Breadcrumb.Page>Data Fetching</Breadcrumb.Page>
+						</Breadcrumb.Item>
+					</Breadcrumb.List>
+				</Breadcrumb.Root>
+			</div>
+		</header>
+		<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+			<div class="grid auto-rows-min gap-4 md:grid-cols-3">
+				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				<div class="bg-muted/50 aspect-video rounded-xl"></div>
+			</div>
+			<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
+		</div>
+	</Sidebar.Inset>
+</Sidebar.Provider>
